@@ -1,0 +1,87 @@
+Домашнее задание
+
+Задание 1:
+
+1)
+
+skypro=# CREATE TABLE city (
+skypro(# city_id BIGSERIAL NOT NULL PRIMARY KEY,
+skypro(# city_name VARCHAR(60) NOT NULL
+skypro(# );
+CREATE TABLE
+skypro=# SELECT * FROM city;
+ city_id | city_name
+---------+-----------
+(0 ёЄЁюъ)
+
+2)
+
+skypro=# ALTER TABLE employee
+skypro-# ADD city_id INT;
+ALTER TABLE
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age | city_id
+----+------------+-----------+--------+-----+---------
+  1 | Natalya    | Izmaylova | woman  |  29 |
+  2 | Vladimir   | Moiseev   | man    |  56 |
+  5 | Natalya    | Sidorova  | woman  |  45 |
+  6 | Ludmila    | Birina    | woman  |  32 |
+  4 | Vladimir   | Neshataev | man    |  22 |
+(5 ёЄЁюъ)
+
+3)
+skypro=# ALTER TABLE employee ADD FOREIGN KEY (city_id) REFERENCES city(city_id);
+ALTER TABLE
+
+4)
+skypro=# INSERT INTO city(
+skypro(# city_id, city_name)
+skypro-# VALUES (1, 'Moscow');
+INSERT 0 1
+skypro=# INSERT INTO city(
+skypro(# city_id, city_name)
+skypro-# VALUES (2, 'Kazan');
+INSERT 0 1
+skypro=# INSERT INTO city(
+skypro(# city_id, city_name)
+skypro-# VALUES(3, 'Saint Petersburg');
+INSERT 0 1
+skypro=# INSERT INTO city(
+skypro(# city_id, city_name)
+skypro-# VALUES (4, 'Sochi');
+INSERT 0 1
+skypro=# INSERT INTO city(
+skypro(# city_id, city_name)
+skypro-# VALUES (5, 'Krasnodar');
+INSERT 0 1
+skypro=# SELECT * FROM city;
+ city_id |    city_name
+---------+------------------
+       1 | Moscow
+       2 | Kazan
+       3 | Saint Petersburg
+       4 | Sochi
+       5 | Krasnodar
+(5 ёЄЁюъ)
+
+skypro=# UPDATE employee SET city_id = 1 WHERE id = 1;
+UPDATE 1
+skypro=# UPDATE employee SET city_id = 2 WHERE id = 2;
+UPDATE 1
+skypro=# UPDATE employee SET city_id = 3 WHERE id = 4;
+UPDATE 1
+skypro=# UPDATE employee SET city_id = 4 WHERE id = 5;
+UPDATE 1
+skypro=# UPDATE employee SET city_id = 5 WHERE id = 6;
+UPDATE 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age | city_id
+----+------------+-----------+--------+-----+---------
+  1 | Natalya    | Izmaylova | woman  |  29 |       1
+  2 | Vladimir   | Moiseev   | man    |  56 |       2
+  4 | Vladimir   | Neshataev | man    |  22 |       3
+  5 | Natalya    | Sidorova  | woman  |  45 |       4
+  6 | Ludmila    | Birina    | woman  |  32 |       5
+(5 ёЄЁюъ)
+
+
