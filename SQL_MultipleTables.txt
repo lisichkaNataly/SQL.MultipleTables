@@ -85,3 +85,117 @@ skypro=# SELECT * FROM employee;
 (5 ёЄЁюъ)
 
 
+
+
+Задание 2:
+
+1)
+
+skypro=# SELECT first_name, last_name, city_name
+skypro-# FROM employee
+skypro-# INNER JOIN city
+skypro-# ON employee.city_id=city.city_id;
+ first_name | last_name |    city_name
+------------+-----------+------------------
+ Natalya    | Izmaylova | Moscow
+ Vladimir   | Moiseev   | Kazan
+ Vladimir   | Neshataev | Saint Petersburg
+ Natalya    | Sidorova  | Sochi
+ Ludmila    | Birina    | Saint Petersburg
+(5 ёЄЁюъ)
+
+2)
+
+skypro=# SELECT city_name, first_name, last_name
+skypro-# FROM employee
+skypro-#  FULL JOIN city
+skypro-# ON employee.city_id=city.city_id;
+    city_name     | first_name | last_name
+------------------+------------+-----------
+ Moscow           | Natalya    | Izmaylova
+ Kazan            | Vladimir   | Moiseev
+ Saint Petersburg | Vladimir   | Neshataev
+ Sochi            | Natalya    | Sidorova
+ Saint Petersburg | Ludmila    | Birina
+ Krasnodar        |            |
+ Samara           |            |
+(7 ёЄЁюъ)
+
+3)
+
+skypro=# INSERT INTO employee(
+skypro(# first_name, last_name, gender, age)
+skypro-# VALUES ('Irina', 'Birina', 'woman', 36);
+INSERT 0 1
+skypro=# SELECT * FROM employee;
+ id | first_name | last_name | gender | age | city_id
+----+------------+-----------+--------+-----+---------
+  1 | Natalya    | Izmaylova | woman  |  29 |       1
+  2 | Vladimir   | Moiseev   | man    |  56 |       2
+  4 | Vladimir   | Neshataev | man    |  22 |       3
+  5 | Natalya    | Sidorova  | woman  |  45 |       4
+  6 | Ludmila    | Birina    | woman  |  32 |       3
+  7 | Irina      | Birina    | woman  |  36 |
+(6 ёЄЁюъ)
+
+skypro=# SELECT first_name, city_name
+skypro-# FROM employee FULL OUTER JOIN city
+skypro-# ON employee.city_id = city.city_id
+skypro-# ORDER BY first_name;
+ first_name |    city_name
+------------+------------------
+ Irina      |
+ Ludmila    | Saint Petersburg
+ Natalya    | Moscow
+ Natalya    | Sochi
+ Vladimir   | Saint Petersburg
+ Vladimir   | Kazan
+            | Krasnodar
+            | Samara
+(8 ёЄЁюъ)
+
+
+4)
+
+skypro=# SELECT first_name, city_name
+skypro-# FROM employee
+skypro-# CROSS JOIN city;
+ first_name |    city_name
+------------+------------------
+ Natalya    | Moscow
+ Vladimir   | Moscow
+ Vladimir   | Moscow
+ Natalya    | Moscow
+ Ludmila    | Moscow
+ Irina      | Moscow
+ Natalya    | Kazan
+ Vladimir   | Kazan
+ Vladimir   | Kazan
+ Natalya    | Kazan
+ Ludmila    | Kazan
+ Irina      | Kazan
+ Natalya    | Saint Petersburg
+ Vladimir   | Saint Petersburg
+ Vladimir   | Saint Petersburg
+ Natalya    | Saint Petersburg
+ Ludmila    | Saint Petersburg
+ Irina      | Saint Petersburg
+ Natalya    | Sochi
+ Vladimir   | Sochi
+ Vladimir   | Sochi
+ Natalya    | Sochi
+ Ludmila    | Sochi
+ Irina      | Sochi
+ Natalya    | Krasnodar
+ Vladimir   | Krasnodar
+ Vladimir   | Krasnodar
+ Natalya    | Krasnodar
+ Ludmila    | Krasnodar
+ Irina      | Krasnodar
+ Natalya    | Samara
+ Vladimir   | Samara
+ Vladimir   | Samara
+ Natalya    | Samara
+ Ludmila    | Samara
+ Irina      | Samara
+(36 ёЄЁюъ)
